@@ -36,8 +36,45 @@ function update(){
 
 console.log(dateNumber);
 
+    let i = 2, j = wDay;
+    const replaceRows = table.rows[i];
+    const replaceDays = replaceRows.cells[j];
 
-    firstDay.firstChild.nodeValue = "1";
+    console.log(replaceDays);
+    i = 3;
+    j = 7;
+    console.log(replaceDays); //i,jを変化させても座標は変わらず。
+
+    /*function addNumber(){
+        if(j === 6){
+            i++;
+            j = 0;
+        }else{
+            j++;
+        };
+    };*/  //functionとして出してみたけど結果は変わらず
+
+    /*for(let days = 1; days <= dateNumber; days++){  //ここが本命。replaceDaysのセル番号が書き変わっていない事が問題。
+        replaceDays.firstChild.nodeValue = days;
+        console.log(days);
+        console.log(i);
+        console.log(j);
+        if(j === 6){
+            i++;
+            j = 0;
+        }else{
+            j++;
+        };
+    };
+
+
+    let tables = document.getElementById('calendar');
+
+/*for (let row of tables.rows) {
+    for(let cell of row.cells){
+        cell.firstChild.nodeValue = 1;
+    } //tableの要素をすべて取得する
+}*/
 
 }
 
