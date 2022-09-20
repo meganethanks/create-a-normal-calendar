@@ -7,12 +7,18 @@
 
 <h1>普通のカレンダーを作る</h1>
 
+<p align="left">下のプルダウンから表示させたい年月を選択して表示ボタンをpush.<br>
+残念ながら毎回ページの更新をしないと正しく表示できない.<p>
+
 <input type="month" id="theMonth">
-<button type="button" onclick="update()">更新</button>
+<button type="button" onclick="update()">表示</button>
 
 <table border="1" width ="50%" height="500" id="calendar">
+<col span="1" style="background-color:pink">
+<col span="5">
+<col span="1"  style="background-color:deepskyblue">
     <tr>
-        <th bgcolor="pink">日</th>
+        <th>日</th>
         <th>月</th>
         <th>火</th>
         <th>水</th>
@@ -21,49 +27,58 @@
         <th>土</th>
     </tr>
     <tr align="center">
-        <td bgcolor="pink">A1</td>
-        <td>B1</td>
-        <td>C1</td>
-        <td>D1</td>
-        <td>E1</td>
-        <td>F1</td>
-        <td>G1</td>
+        <td>　</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
     <tr align="center">
-        <td bgcolor="pink">A2</td>
-        <td>B2</td>
-        <td>C2</td>
-        <td>D2</td>
-        <td>E2</td>
-        <td>F2</td>
-        <td>G2</td>
+        <td>　</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
     <tr align="center">
-        <td bgcolor="pink">A3</td>
-        <td>B3</td>
-        <td>C3</td>
-        <td>D3</td>
-        <td>E3</td>
-        <td>F3</td>
-        <td>G3</td>
+        <td>　</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
     <tr align="center">
-        <td bgcolor="pink">A4</td>
-        <td>B4</td>
-        <td>C4</td>
-        <td>D4</td>
-        <td>E4</td>
-        <td>F4</td>
-        <td>G4</td>
+        <td>　</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
     <tr align="center">
-        <td bgcolor="pink">A5</td>
-        <td>B5</td>
-        <td>C5</td>
-        <td>D5</td>
-        <td>E5</td>
-        <td>F5</td>
-        <td>G5</td>
+        <td>　</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr align="center">
+        <td>　</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
 </table>
 

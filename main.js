@@ -1,80 +1,66 @@
-const theMonth = document.querySelector('input[type="month"]');
+const dateToDisplay = document.querySelector('input[type="month"]');
+const table = document.getElementById("calendar");
+const forReset = document.body.innerHTML;
 
-
+//更新ボタンを押したときの動作
+//ユーザーが選択した年月(dateToDisplay)から１日目の曜日(firstDayOfTheMonth)、月(theMonth)、年(theYear)を取得
+//その月が全部で何日あるのか(俗に言う大の月小の月)を判定→numberOfDaysと宣言
 function update(){
-    console.log(theMonth.value);
-    const theDay = new Date(theMonth.value);
-    console.log(theDay);
-    const wDay = theDay.getDay();
-    const month = theDay.getMonth() + 1;
-    const year = theDay.getFullYear();
-    console.log(wDay);
+    console.log(dateToDisplay.value);
+    const fullDate = new Date(dateToDisplay.value);
+    console.log(fullDate);
+    const firstDayOfTheMonth = fullDate.getDay();
+    const theMonth = fullDate.getMonth() + 1;
+    const theYear = fullDate.getFullYear();
+    console.log(firstDayOfTheMonth);
 
 
-    const table = document.getElementById("calendar");
-    const firstRow = table.rows[1];
-    const firstDay = firstRow.cells[wDay];
-    console.log(firstDay);
-    const shotMonth = [2,4,6,9,11]
+    const rowOfFirstDate = table.rows[1];
+    const placeOfFirstDate = rowOfFirstDate.cells[firstDayOfTheMonth];
+    console.log(placeOfFirstDate);
+    const shortMonth = [2,4,6,9,11]
     
 
-    const dateNumber = ((month) => {
-        if(month === shotMonth){  //大の月小の月を判定して日数を決定
-         if(month === 2){
-            if((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0){ //うるう年ケア
-                return 29
-            }else{
-         return 28;
-            }
-         }else{
+    const numberOfDays = ((theMonth) => {
+        if(shortMonth.includes(theMonth)){  //大の月小の月を判定して日数を決定
+          if(theMonth !== 2){
              return 30;
-        };
-    }else{
-        return 31;
-    };
-})(month);  //お尻に(month)をつけたら値がうまくいったのマジで謎
-
-console.log(dateNumber);
-
-    let i = 2, j = wDay;
-    const replaceRows = table.rows[i];
-    const replaceDays = replaceRows.cells[j];
-
-    console.log(replaceDays);
-    i = 3;
-    j = 7;
-    console.log(replaceDays); //i,jを変化させても座標は変わらず。
-
-    /*function addNumber(){
-        if(j === 6){
-            i++;
-            j = 0;
+          }else if((theYear % 4 === 0 && theYear % 100 !== 0) || theYear % 400 === 0){ //うるう年をケア
+             return 29;
+          }else{
+             return 28;
+          }
         }else{
-            j++;
+          return 31;
         };
-    };*/  //functionとして出してみたけど結果は変わらず
+        })(theMonth);  //ここに(theMonth)をつけたら値がうまくいったのマジで謎
 
-    /*for(let days = 1; days <= dateNumber; days++){  //ここが本命。replaceDaysのセル番号が書き変わっていない事が問題。
-        replaceDays.firstChild.nodeValue = days;
-        console.log(days);
-        console.log(i);
-        console.log(j);
-        if(j === 6){
-            i++;
-            j = 0;
-        }else{
-            j++;
-        };
-    };
+console.log(numberOfDays);
 
 
-    let tables = document.getElementById('calendar');
+   //placeOfFirstDate.firstChild.nodeValue = "1";  //とりあえず1ヵ所の書き換えに成功。ただし記述方法を変更。
 
-/*for (let row of tables.rows) {
-    for(let cell of row.cells){
-        cell.firstChild.nodeValue = 1;
-    } //tableの要素をすべて取得する
-}*/
 
-}
+// 一旦表を非表示にする
+table.style.display = 'none';
+//document.body.innerHTML = forReset; //表を初期状態にリセットするために記述したが、下の書き換えが正しく機能しなくなった。
 
+
+// 非表示状態で要素を更新する
+
+
+for(days = 1, i = 1, j = firstDayOfTheMonth; days <= numberOfDays; days++){
+     table.rows[i].cells[j].innerText = days; //firstChild.nodeValueではダメだったがinnerTextだと上手くいく。
+      if(j === 6){
+           j = 0;
+           i++;
+      }else{
+           j++;
+      };
+     };
+
+
+// 表を再表示する
+table.style.display = 'table';
+
+};
