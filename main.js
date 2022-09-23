@@ -1,6 +1,6 @@
 const dateToDisplay = document.querySelector('input[type="month"]');
 const table = document.getElementById("calendar");
-const forReset = document.body.innerHTML;
+const resetTable = document.getElementById("calendar").innerHTML;
 
 //更新ボタンを押したときの動作
 //ユーザーが選択した年月(dateToDisplay)から１日目の曜日(firstDayOfTheMonth)、月(theMonth)、年(theYear)を取得
@@ -18,8 +18,7 @@ function update(){
     const rowOfFirstDate = table.rows[1];
     const placeOfFirstDate = rowOfFirstDate.cells[firstDayOfTheMonth];
     console.log(placeOfFirstDate);
-    const shortMonth = [2,4,6,9,11]
-    
+    const shortMonth = [2,4,6,9,11];
 
     const numberOfDays = ((theMonth) => {
         if(shortMonth.includes(theMonth)){  //大の月小の月を判定して日数を決定
@@ -33,7 +32,7 @@ function update(){
         }else{
           return 31;
         };
-        })(theMonth);  //ここに(theMonth)をつけたら値がうまくいったのマジで謎
+        })(theMonth);  //ここに(theMonth)をつけたら値がうまくいったのが理解できていない
 
 console.log(numberOfDays);
 
@@ -42,12 +41,11 @@ console.log(numberOfDays);
 
 
 // 一旦表を非表示にする
-table.style.display = 'none';
-//document.body.innerHTML = forReset; //表を初期状態にリセットするために記述したが、下の書き換えが正しく機能しなくなった。
+//table.style.display = 'none';
+document.getElementById("calendar").innerHTML = resetTable; //表を初期状態にリセットするために記述したが、記述方法が間違っていて意図を反映させられていない
 
 
 // 非表示状態で要素を更新する
-
 
 for(days = 1, i = 1, j = firstDayOfTheMonth; days <= numberOfDays; days++){
      table.rows[i].cells[j].innerText = days; //firstChild.nodeValueではダメだったがinnerTextだと上手くいく。
@@ -59,8 +57,7 @@ for(days = 1, i = 1, j = firstDayOfTheMonth; days <= numberOfDays; days++){
       };
      };
 
-
 // 表を再表示する
-table.style.display = 'table';
+//table.style.display = 'table';
 
 };
